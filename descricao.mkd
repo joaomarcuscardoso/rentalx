@@ -1,1 +1,9 @@
 # Documentação do projeto
+> adicionamos a bibliotecas yarn add ts-node-dev -D para automatizar a renderização ts para js e rodar o server
+> em package.json:
+    "scripts": {
+        "dev": "ts-node-dev --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+    },
+*yarn dev para rodar
+* vamos desabilitar strict: false, para não checar os errors dentro da aplicação.
+* 
