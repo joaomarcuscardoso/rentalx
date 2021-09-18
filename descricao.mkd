@@ -6,4 +6,49 @@
     },
 *yarn dev para rodar
 * vamos desabilitar strict: false, para não checar os errors dentro da aplicação.
-* 
+
+# Debug
+criamos um log em node no debug do vscode
+e alteramos o type para "node", e também o "request" para "attach", no package.json vamos adicionar
+--inspect para o debugger escutar o projeto  
+
+
+# Criação categories
+* criamos o arquivos src/routes/categories.routes.ts e vamos configurar nossa rota
+> Criamos uma url /categories, e dentro dela os elementos que sera composto um item de categoria
+        import { Router } from "express";
+
+        const categoriesRoutes = Router();
+
+        const categories = [];
+
+        categoriesRoutes.post("/categories", (request, response) => {
+        const { name, description } = request.body;
+        categories.push({
+            name,
+            description,
+        });
+
+        return response.status(201);
+        });
+
+        export default categoriesRoutes;
+
+> em server.ts
+        import express from "express";
+        import categoriesRoutes from "./routes/categoires.routes";
+
+        const app = express();
+
+        app.use(express.json());
+
+        app.use(categoriesRoutes);
+
+        app.get("/", (request, response) => {
+            return response.json({ messages: "Hello" });
+        });
+
+        app.listen(3333, () => console.log("Server is running!"));
+
+# Adicionando id em categories
+> yarn add uuid && yarn add @types/uuid -D
