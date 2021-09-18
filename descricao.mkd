@@ -52,3 +52,32 @@ e alteramos o type para "node", e também o "request" para "attach", no package.
 
 # Adicionando id em categories
 > yarn add uuid && yarn add @types/uuid -D
+
+# Criando model
+>model/category.ts
+        import { v4 as uuidV4 } from "uuid";
+
+        class Category {
+            id?: string;
+            name: string;
+            description: string;
+            created_at: Date;
+
+            constructor() {
+                if (!this.id) {
+                    this.id = uuidV4();
+                }
+            }
+        }
+
+        export { Category };
+        
+
+> categories.routes.ts:
+    const categories: Category[] = [];
+
+    
+    const { name, description } = request.body;
+    const category = new Category();
+    Object.assign(category, { name, description, created_at: new Date() });
+    categories.push(category);
