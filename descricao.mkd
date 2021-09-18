@@ -76,8 +76,74 @@ e alteramos o type para "node", e também o "request" para "attach", no package.
 > categories.routes.ts:
     const categories: Category[] = [];
 
-    
+
     const { name, description } = request.body;
     const category = new Category();
     Object.assign(category, { name, description, created_at: new Date() });
     categories.push(category);
+
+
+# Repositorios - Created
+* Fazem as logicas das manipulação de dados, conexão com banco de dados etc...
+* Vamos utilizar o DTO = Data Transfer object:
+    (vamos criar um objeto que é responsavel por fazer uma transferencia de valores de camada a outra)
+*Obs Interface sempre começa com I o nome da class:
+> no repositories/CategoriesRepository:
+        import { Category } from "../model/Category";
+
+        // DTO
+        interface ICreateCategoryDTO {
+            name: string;
+            description: string;
+        }
+
+        class CategoriesRepository {
+            private categories: Category[];
+
+            constructor() {
+                this.categories = [];
+            }
+
+            create({ name, description }: ICreateCategoryDTO): void {
+                const category = new Category();
+
+                Object.assign(category, {
+                    name,
+                    description,
+                    created_at: new Date(),
+                });
+
+                this.categories.push(category);
+            }
+        }
+
+        export { CategoriesRepository };
+
+> categoires.routes.ts:
+        import { Router } from "express";
+
+        import { CategoriesRepository } from "../repositories/CategoriesRepository";
+
+        const categoriesRoutes = Router();
+        const categoriesRepository = new CategoriesRepository();
+
+        categoriesRoutes.post("/", (request, response) => {
+            const { name, description } = request.body;
+
+            categoriesRepository.create({ name, description });
+
+            return response.status(201).send();
+        });
+
+        export default categoriesRoutes;
+
+# Repositorios - List
+>repositories/CategoriesRepository
+        list(): Category[] {
+            return this.categories;
+        }
+>routes/categories.routes.ts
+        categoriesRoutes.get("/", (request, response) => {
+            const all = categoriesRepository.list();
+            return response.json(all);
+        });
