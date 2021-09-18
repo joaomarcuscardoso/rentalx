@@ -88,7 +88,8 @@ e alteramos o type para "node", e também o "request" para "attach", no package.
 * Vamos utilizar o DTO = Data Transfer object:
     (vamos criar um objeto que é responsavel por fazer uma transferencia de valores de camada a outra)
 *Obs Interface sempre começa com I o nome da class:
-> no repositories/CategoriesRepository:
+> no repositories/CategoriesRepository, vamos validar a categoria por nome tbm por não queremos que ela seja duplicada:
+    
         import { Category } from "../model/Category";
 
         // DTO
@@ -118,7 +119,15 @@ e alteramos o type para "node", e também o "request" para "attach", no package.
         }
 
         export { CategoriesRepository };
+> repositories/CategoriesRepository função, finByName:
 
+    findByName(name: string): Category {
+        const category = this.categories.find(
+            (category) => category.name === name
+        );
+
+        return category;
+    }
 > categoires.routes.ts:
         import { Router } from "express";
 
@@ -129,7 +138,12 @@ e alteramos o type para "node", e também o "request" para "attach", no package.
 
         categoriesRoutes.post("/", (request, response) => {
             const { name, description } = request.body;
+            const categoryAlreadyExists = categoriesRepository.findByName(name);
 
+            if (categoryAlreadyExists) {
+                return response.status(400).json({ error: "Category already exists!" });
+            }
+            
             categoriesRepository.create({ name, description });
 
             return response.status(201).send();
@@ -147,3 +161,4 @@ e alteramos o type para "node", e também o "request" para "attach", no package.
             const all = categoriesRepository.list();
             return response.json(all);
         });
+
