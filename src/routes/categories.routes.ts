@@ -13,4 +13,4 @@ categoriesRoutes.get("/", (request, response) => {
     return listCategoriesController.handle(request, response);
 });
 
-export default categoriesRoutes;
+export { categoriesRoutes };
