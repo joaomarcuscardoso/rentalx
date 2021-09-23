@@ -27,11 +27,16 @@ export async function ensureAuthenticated(
             "51c5ccf771e350d742f0303ec2020af7"
         ) as IPayload;
         const usersRepository = new UsersRepository();
-        const user = usersRepository.findById(user_id);
+        const user = await usersRepository.findById(user_id);
 
         if (!user) {
             throw new AppError("User does not existing!", 401);
         }
+
+        // sobreescrever o express
+        request.user = {
+            id: user_id,
+        };
 
         next();
     } catch {
