@@ -17,7 +17,7 @@ describe("Authenticate User", () => {
         );
         createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
     });
-    it("Should be able to authenticate an user", async () => {
+    it("should be able to authenticate an user", async () => {
         const user: ICreateUserDTO = {
             driver_license: "000123",
             email: "user@test.com",
@@ -35,7 +35,7 @@ describe("Authenticate User", () => {
         expect(result).toHaveProperty("token");
     });
 
-    it("Should not be able to authenticate an nonexistent user", () => {
+    it("should not be able to authenticate an nonexistent user", () => {
         expect(async () => {
             await authenticateUserUseCase.execute({
                 email: "false@email.com",
@@ -44,7 +44,7 @@ describe("Authenticate User", () => {
         }).rejects.toBeInstanceOf(AppError);
     });
 
-    it("Should not be able to authenticate with incorrect password", () => {
+    it("should not be able to authenticate with incorrect password", () => {
         expect(async () => {
             const user: ICreateUserDTO = {
                 driver_license: "9999",
