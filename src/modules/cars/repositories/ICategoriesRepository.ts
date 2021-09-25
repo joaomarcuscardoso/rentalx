@@ -1,4 +1,4 @@
-import { Category } from "../infra/entities/Category";
+import { Category } from "@modules/cars/infra/entities/Category";
 
 // DTO
 interface ICreateCategoryDTO {
