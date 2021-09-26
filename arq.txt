@@ -1,0 +1,166 @@
+.
+├── Dockerfile
+├── README.md
+├── anotacao
+│   └── descricao.mkd
+├── arq.txt
+├── avatar
+├── diagrama.png
+├── docker-compose.yml
+├── echo
+├── jest.config.ts
+├── ormconfig.json
+├── package.json
+├── prettier.config.js
+├── src
+│   ├── @types
+│   │   └── express
+│   │       └── index.d.ts
+│   ├── config
+│   │   └── upload.ts
+│   ├── modules
+│   │   ├── accounts
+│   │   │   ├── dtos
+│   │   │   │   └── ICreateUserDTO.ts
+│   │   │   ├── infra
+│   │   │   │   ├── entities
+│   │   │   │   │   └── User.ts
+│   │   │   │   └── repositories
+│   │   │   │       └── UsersRepository.ts
+│   │   │   ├── repositories
+│   │   │   │   ├── IUsersRepository.ts
+│   │   │   │   └── in-memory
+│   │   │   │       └── UsersRepositoryInMemory.ts
+│   │   │   └── useCases
+│   │   │       ├── authenticateUser
+│   │   │       │   ├── AuthenticateUserController.ts
+│   │   │       │   ├── AuthenticateUserUseCase.spec.ts
+│   │   │       │   └── AuthenticateUserUseCase.ts
+│   │   │       ├── createUser
+│   │   │       │   ├── CreateUserController.ts
+│   │   │       │   └── CreateUserUseCase.ts
+│   │   │       └── updateUserAvatar
+│   │   │           ├── UpdateUserAvatarController.ts
+│   │   │           └── UpdateUserAvatarUseCase.ts
+│   │   ├── cars
+│   │   │   ├── dtos
+│   │   │   │   └── ICreateCarDTO.ts
+│   │   │   ├── infra
+│   │   │   │   ├── entities
+│   │   │   │   │   ├── Car.ts
+│   │   │   │   │   ├── CarImage.ts
+│   │   │   │   │   ├── Category.ts
+│   │   │   │   │   └── Specification.ts
+│   │   │   │   └── repositories
+│   │   │   │       ├── CarsRepository.ts
+│   │   │   │       ├── CategoriesRepository.ts
+│   │   │   │       └── SpecificationsRepository.ts
+│   │   │   ├── repositories
+│   │   │   │   ├── CarsImagesRepository.ts
+│   │   │   │   ├── ICarsRepository.ts
+│   │   │   │   ├── ICategoriesRepository.ts
+│   │   │   │   ├── ISpecificationsRepository.ts
+│   │   │   │   └── in-memory
+│   │   │   │       ├── CarsRepositoryInMemory.ts
+│   │   │   │       ├── CategoriesRepositoryInMemory.ts
+│   │   │   │       ├── ICarsImagesRepository.ts
+│   │   │   │       └── SpecificationsRepositoryInMemory.ts
+│   │   │   └── useCases
+│   │   │       ├── CreateCarSpecification
+│   │   │       │   ├── CreateCarSpecificationController.ts
+│   │   │       │   ├── CreateCarSpecificationUseCase.spec.ts
+│   │   │       │   └── CreateCarSpecificationUseCase.ts
+│   │   │       ├── createCar
+│   │   │       │   ├── CreateCarController.ts
+│   │   │       │   ├── CreateCarUseCase.spec.ts
+│   │   │       │   └── CreateCarUseCase.ts
+│   │   │       ├── createCategory
+│   │   │       │   ├── CreateCategoryController.ts
+│   │   │       │   ├── CreateCategoryUseCase.spec.ts
+│   │   │       │   └── CreateCategoryUseCase.ts
+│   │   │       ├── createSpecification
+│   │   │       │   ├── CreateSpecificationController.ts
+│   │   │       │   └── CreateSpecificationUseCase.ts
+│   │   │       ├── importCategory
+│   │   │       │   ├── ImportCategoryController.ts
+│   │   │       │   └── ImportCategoryUseCase.ts
+│   │   │       ├── listAvailableCars
+│   │   │       │   ├── ListAvailableCarsController.ts
+│   │   │       │   ├── ListAvailableCarsUseCase.spec.ts
+│   │   │       │   └── ListAvailableCarsUseCase.ts
+│   │   │       ├── listCategories
+│   │   │       │   ├── ListCategoriesUseCase.ts
+│   │   │       │   └── ListcategoriesController.ts
+│   │   │       └── uploadCarImages
+│   │   │           ├── UploadCarImagesController.ts
+│   │   │           └── UploadCarImagesUseCase.ts
+│   │   └── rentals
+│   │       ├── infra
+│   │       │   └── typeorm
+│   │       │       ├── entities
+│   │       │       │   └── Rental.ts
+│   │       │       └── repositories
+│   │       ├── repositories
+│   │       │   ├── IRentalsRepository.ts
+│   │       │   └── in-memory
+│   │       │       └── RentalsRepositoryInMemory.ts
+│   │       └── useCases
+│   │           ├── CreateRentalController.ts
+│   │           ├── CreateRentalUseCase.spec.ts
+│   │           └── CreateRentalUseCase.ts
+│   ├── shared
+│   │   ├── container
+│   │   │   └── index.ts
+│   │   ├── errors
+│   │   │   └── AppError.ts
+│   │   └── infra
+│   │       ├── http
+│   │       │   ├── middlewares
+│   │       │   │   ├── ensureAdmin.ts
+│   │       │   │   └── ensureAuthenticated.ts
+│   │       │   ├── routes
+│   │       │   │   ├── authenticate.routes.ts
+│   │       │   │   ├── cars.routes.ts
+│   │       │   │   ├── categories.routes.ts
+│   │       │   │   ├── index.ts
+│   │       │   │   ├── specifications.routes.ts
+│   │       │   │   └── users.routes.ts
+│   │       │   └── server.ts
+│   │       └── typeorm
+│   │           ├── index.ts
+│   │           ├── migrations
+│   │           │   ├── 1632195781339-CreateCategories.ts
+│   │           │   ├── 1632258680833-CreateSpecifications.ts
+│   │           │   ├── 1632276277949-CreateUsers.ts
+│   │           │   ├── 1632279465940-AlterUserDeleteUsername.ts
+│   │           │   ├── 1632361631646-AlterUserAddAvatar.ts
+│   │           │   ├── 1632592130789-CreateCars.ts
+│   │           │   ├── 1632612429466-CreateSpecificationsCars.ts
+│   │           │   ├── 1632626488615-CreateCarImages.ts
+│   │           │   └── 1632678952658-CreateRentals.ts
+│   │           └── seed
+│   │               └── admin.ts
+│   ├── swagger.json
+│   └── utils
+│       └── file.ts
+├── tmp
+│   ├── 352c1bc1874e7fc5f787f126cc1470a3
+│   ├── avatar
+│   │   ├── 60827263609ca9f85d8457a9ba9f1087-ava.png
+│   │   └── d8293795b9e65c07c927b65d0d315d7d-ava.png
+│   └── cars
+│       ├── 2644eae9f42ded6175ed881bccc5010f-audi_a4.jpg
+│       ├── 4aff40e50df26e8bed30fe33792a2d4b-audi_a4.jpg
+│       ├── 4dec0fe31e716efea5179ce307e802a3-2019-08-20-2.jpg
+│       ├── 5b553152ba9b27e776e8b27309cb01c7-2019-08-20-2.jpg
+│       ├── 7d2c91cb2dbf89d8c9a4c1ab1adb8079-2019-08-20-2.jpg
+│       ├── 937217f0fde7128e37f90f7d0280e666-audi_a4.jpg
+│       ├── 9645b41550989a95cbead95c3524076d-2019-08-20-2.jpg
+│       ├── 9e0316c815290eca729fb8bd39b7414d-2019-08-20-2.jpg
+│       ├── a6f6c65d8020613daa24f69dd0366f2d-audi_a4.jpg
+│       └── e57dbc9b664008f43397e165cb504379-audi_a4.jpg
+├── tsconfig.json
+├── yarn-error.log
+└── yarn.lock
+
+56 directories, 107 files

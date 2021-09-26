@@ -1,3 +1,10 @@
 {
-    "cSpell.words": ["middlewares", "respawn", "tsyringe", "typeorm", "varchar"]
+    "cSpell.words": [
+        "middlewares",
+        "respawn",
+        "tsyringe",
+        "typeorm",
+        "Usecase",
+        "varchar"
+    ]
 }
