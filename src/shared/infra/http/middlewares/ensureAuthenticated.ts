@@ -1,7 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
 
+import auth from "@config/auth";
 import { UsersRepository } from "@modules/accounts/infra/repositories/UsersRepository";
+import { UsersTokensRepository } from "@modules/accounts/infra/repositories/UsersTokensRepository";
 import { AppError } from "@shared/errors/AppError";
 
 interface IPayload {
@@ -12,7 +14,7 @@ export async function ensureAuthenticated(
     request: Request,
     response: Response,
     next: NextFunction
-) {
+): Promise<void> {
     const authHeader = request.headers.authorization;
 
     if (!authHeader) {
@@ -22,18 +24,8 @@ export async function ensureAuthenticated(
     const [, token] = authHeader.split(" ");
 
     try {
-        const { sub: user_id } = verify(
-            token,
-            "51c5ccf771e350d742f0303ec2020af7"
-        ) as IPayload;
-        const usersRepository = new UsersRepository();
-        const user = await usersRepository.findById(user_id);
+        const { sub: user_id } = verify(token, auth.secret_token) as IPayload;
 
-        if (!user) {
-            throw new AppError("User does not existing!", 401);
-        }
-
-        // sobreescrever o express
         request.user = {
             id: user_id,
         };
