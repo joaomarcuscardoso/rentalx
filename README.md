@@ -1,4 +1,4 @@
-![Alt text](src/diagrama.png?raw=true "Title")
+![Alt text](./diagrama.png?raw=true "Title")
 
 
 # Cadastro de erro
