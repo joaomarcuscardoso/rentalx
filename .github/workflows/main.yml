@@ -27,7 +27,7 @@ jobs:
       - name: Build
         run: yarn build
         
-      - uses: appleboy/scp-action@main
+      - uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -37,7 +37,7 @@ jobs:
           target: "~/app/rentalx"
     
       - name: Updated Api
-        uses: appleboy/ssh-action@main
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
