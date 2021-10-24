@@ -1,3 +1,6 @@
+![Alt text](src/diagrama.png?raw=true "Title")
+
+
 # Cadastro de erro
 
 **RF**
