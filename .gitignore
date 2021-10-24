@@ -31,6 +31,10 @@ coverage
 # Bower dependency directory (https://bower.io/)
 bower_components
 
+# Extensions
+.vscode
+
+
 # node-waf configuration
 .lock-wscript
 
@@ -108,3 +112,10 @@ anotacao/
 
 # prettier
 .prettierignore
+
+# files temporay
+tmp/*
+!tmp/.gitkeep
+
+# config db
+ormconfig.json
