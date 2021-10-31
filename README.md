@@ -68,7 +68,6 @@
 - [x] O usuário deve estar logado na aplicação.
 - [x] Ao realizar um aluguel, o status do carro deverá ser alterado para indisponível .
 
-
 # Devolução de carro
 
 **RF** 
